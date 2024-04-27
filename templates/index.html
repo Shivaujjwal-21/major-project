@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Video</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#video").change(function(){
+                $("#form").submit();
+                
+            })
+
+
+
+        });
+    </script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 80%;
+            max-width: 400px;
+            box-sizing: border-box;
+            margin: auto;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+
+        label:hover {
+            background-color: #45a049;
+        }
+
+        img {
+            max-width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Upload Video</h1>
+
+        <!-- X-ray image upload form -->
+        <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data" id="form">
+            <input type="file" name="video" id="video" accept="video/*" required>
+            <label for="video">Select video</label>
+          
+        </form>
+    {% if prediction %}
+        
+        <h2>Prediction Result:</h2>
+        <p>{{ prediction }}</p>
+    {% endif %}
+        
+    </div>
+</body>
+
+</html>
